@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator najmu</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+<div class="app">
+  <h1>Kalkulator najmu</h1>
+  <p class="opis">Sprawdź, czy najemca ma nadpłatę albo niedopłatę.</p>
+
+  <label>Miesiąc</label>
+  <input id="miesiac" type="text" placeholder="np. Lipiec 2026">
+
+  <label>Stały czynsz najmu</label>
+<input id="czynsz" type="number" placeholder="np. 2500">
+<button class="secondary" onclick="zapiszCzynsz()">Zapisz stały czynsz</button>
+
+  <label>Kwota zapłacona przez najemcę</label>
+  <input id="zaplacono" type="number" placeholder="np. 2700">
+
+  <label>Prąd</label>
+  <input id="prad" type="number" placeholder="np. 160">
+
+  <label>Woda</label>
+  <input id="woda" type="number" placeholder="np. 80">
+
+  <label>Potrącenie</label>
+  <input id="potracenie" type="number" placeholder="np. 300">
+
+  <label>Opis potrącenia</label>
+  <input id="opisPotracenia" type="text" placeholder="np. zakup pralki">
+
+  <button onclick="policz()">Policz</button>
+
+  <div id="wynik" class="wynik">
+    Wynik pojawi się tutaj
+  </div>
+<button id="przyciskZapisu" class="secondary" onclick="zapiszMiesiac()">Zapisz miesiąc</button>
+<button class="secondary" onclick="eksportujPDF()">
+    📄 Eksportuj PDF
+</button>
+<div class="historia-box">
+  <h2>Historia</h2>
+  <div id="saldo" class="saldo">
+  Łączne saldo: 0 zł
+</div>
+  <div id="historia">
+    Brak zapisanych miesięcy
+  </div>
+</div>
+</div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
