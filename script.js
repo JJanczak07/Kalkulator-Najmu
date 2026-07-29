@@ -21,7 +21,7 @@ function policz() {
   }
 
   let naleznosc = czynsz + prad + woda - potracenie;
-  let nadplata = zaplacono - naleznosc;
+  let nadplata = Number((zaplacono - naleznosc).toFixed(2));
 
   if (nadplata > 0) {
     wynik.innerHTML = "✅ Nadpłata: " + nadplata + " zł";
