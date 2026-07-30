@@ -68,8 +68,7 @@ function zapiszMiesiac() {
     woda: woda,
     potracenie: potracenie,
     opisPotracenia: opisPotracenia,
-    naleznosc: naleznosc,
-    nadplata: nadplata
+    naleznosc: naleznosc
   };
 
   let historia = JSON.parse(localStorage.getItem("historiaNajmu")) || [];
@@ -114,7 +113,15 @@ function pokazHistorie() {
   let saldo = 0;
 
 historia.forEach(function(miesiac) {
-  saldo += Number(miesiac.nadplata);
+
+  let nadplata =
+    miesiac.zaplacono -
+    (miesiac.czynsz + miesiac.prad + miesiac.woda - miesiac.potracenie);
+
+  nadplata = Number(nadplata.toFixed(2));
+
+  saldo += nadplata;
+
 });
 
 saldo = Number(saldo.toFixed(2));
@@ -138,6 +145,11 @@ saldo = Number(saldo.toFixed(2));
   }
 
   historia.slice().reverse().forEach(function(miesiac, index) {
+    let nadplata =
+  miesiac.zaplacono -
+  (miesiac.czynsz + miesiac.prad + miesiac.woda - miesiac.potracenie);
+
+nadplata = Number(nadplata.toFixed(2));
     historiaDiv.innerHTML += `
       <div class="pozycja-historii">
         <strong>📅 ${miesiac.miesiac}</strong><br><br>
@@ -149,10 +161,10 @@ saldo = Number(saldo.toFixed(2));
         📝 ${miesiac.opisPotracenia}<br><br>
 
         <strong>${
-          miesiac.nadplata >= 0
+          nadplata >= 0
             ? "✅ Nadpłata"
             : "❌ Niedopłata"
-        }: ${Math.abs(miesiac.nadplata)} zł</strong>
+        }: ${Math.abs(nadplata)} zł</strong>
 
         <br><br>
 
