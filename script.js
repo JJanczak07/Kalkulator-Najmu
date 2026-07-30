@@ -113,9 +113,11 @@ function pokazHistorie() {
   let historia = JSON.parse(localStorage.getItem("historiaNajmu")) || [];
   let saldo = 0;
 
-  historia.forEach(function(miesiac) {
-    saldo += miesiac.nadplata;
-  });
+historia.forEach(function(miesiac) {
+  saldo += Number(miesiac.nadplata);
+});
+
+saldo = Number(saldo.toFixed(2));
 
   let historiaDiv = document.getElementById("historia");
   let saldoDiv = document.getElementById("saldo");
